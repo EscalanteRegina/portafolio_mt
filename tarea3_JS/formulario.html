@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario JS</title>
+  <script>
+    function enviar(e){
+      e.preventDefault();
+      var nombre = document.getElementById("nombre").value;
+      var correo = document.getElementById("correo").value;
+      var edad = document.getElementById("edad").value;
+      var generoEl = document.querySelector('input[name="genero"]:checked');
+      var genero = generoEl ? generoEl.value : "";
+      var fecha = document.getElementById("nacimiento").value;
+      var color = document.getElementById("color").value;
+      var salida = "Nombre: " + nombre + " | Correo: " + correo + " | Edad: " + edad + " | Género: " + genero + " | Fecha de nacimiento: " + fecha + " | Color favorito: " + color;
+      document.getElementById("resultado").textContent = salida;
+    }
+  </script>
+</head>
+<body>
+  <h1>Formulario</h1>
+  <form onsubmit="enviar(event)">
+    <label>Nombre
+      <input type="text" id="nombre">
+    </label><br><br>
+
+    <label>Correo
+      <input type="email" id="correo">
+    </label><br><br>
+
+    <label>Edad
+      <input type="number" id="edad">
+    </label><br><br>
+
+    Género:
+    <label><input type="radio" name="genero" value="Femenino"> Femenino</label>
+    <label><input type="radio" name="genero" value="Masculino"> Masculino</label>
+    <label><input type="radio" name="genero" value="Otro"> Otro</label><br><br>
+
+    <label>Fecha de nacimiento
+      <input type="date" id="nacimiento">
+    </label><br><br>
+
+    <label>Color favorito
+      <input type="color" id="color">
+    </label><br><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <p id="resultado"></p>
+</body>
+</html>

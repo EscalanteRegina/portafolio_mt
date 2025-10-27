@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Multimedia</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Elementos Multimedia</h1>
+  </header>
+
+  <main class="container">
+
+    <!-- AUDIO -->
+    <section class="card">
+      <h2>Audio</h2>
+      <audio controls preload="metadata">
+        <source src="media/audio.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento <code>audio</code>.
+      </audio>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="card">
+      <h2>Video</h2>
+      <video controls width="640" height="360"
+             poster="https://via.placeholder.com/640x360.png?text=Video">
+        <source src="media/video.mp4" type="video/mp4">
+        Tu navegador no soporta el elemento <code>video</code>.
+      </video>
+    </section>
+
+    <!-- YOUTUBE -->
+<section class="card">
+  <h2>YouTube</h2>
+  <div class="video-embed">
+    <iframe
+      width="560" height="315"
+      src="https://www.youtube-nocookie.com/embed/VwQ72vgQ0Jo?rel=0&modestbranding=1"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+    <!-- TWITTER -->
+<section class="card">
+  <h2>Twitter</h2>
+  <a class="twitter-timeline"
+     data-height="480"
+     data-theme="dark"
+     href="https://twitter.com/barbie_context">
+    Tweets by barbie_context
+  </a>
+</section>
+
+    <!-- FACEBOOK -->
+    <section class="card">
+      <h2>Facebook</h2>
+      <iframe
+        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fdisneyplusla&tabs=timeline&width=500&height=480&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+        width="500" height="480" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen>
+      </iframe>
+    </section>
+
+    <!-- GOOGLE MAPS -->
+    <section class="card">
+      <h2>Google Maps</h2>
+      <div class="map-embed">
+        <iframe
+          src="https://www.google.com/maps?q=Universidad%20An%C3%A1huac%20M%C3%A9xico%20Norte&output=embed"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+
+  </main>
+
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>

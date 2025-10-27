@@ -1,0 +1,9 @@
+body{font-family:Arial,sans-serif}
+table{border-collapse:collapse}
+.tabla-ejemplo{width:100%;max-width:980px;border:1px solid #c6dfd6}
+.tabla-ejemplo th,.tabla-ejemplo td{padding:.4rem .6rem;border:1px solid #c6dfd6}
+.tabla-ejemplo thead th{background:#6cb7a1;color:#fff;text-align:center}
+.tabla-ejemplo tbody tr:nth-child(odd){background:#eaf6f1}
+.tabla-ejemplo tbody tr:nth-child(even){background:#d7ece4}
+.tabla-ejemplo tbody td{text-align:right}
+.tabla-ejemplo tbody td:first-child{text-align:center}

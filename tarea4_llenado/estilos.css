@@ -1,0 +1,11 @@
+body { font-family: Arial, sans-serif; margin: 24px; }
+h1 { margin-bottom: 12px; }
+
+.tabla { border-collapse: collapse; width: 100%; max-width: 900px; }
+.tabla th, .tabla td { border: 1px solid #999; padding: 6px 8px; text-align: left; }
+.tabla thead th { background: #222; color: #fff; }
+
+.tabla tbody tr:nth-child(odd) { background: rgb(201, 201, 255); }
+.tabla tbody tr:nth-child(even) { background: rgb(223, 250, 182); }
+
+.tabla tbody tr:hover { background: #ffe9b3; }

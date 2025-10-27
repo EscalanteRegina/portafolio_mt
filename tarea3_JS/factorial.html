@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manejo de Formularios</title>
+<script>
+  function filtrado(){
+    var valor = document.getElementById("numero").value;
+    if (valor === "") {
+      document.getElementById("resultado").innerHTML = "Ingresa un número:";
+      return;
+    }
+    var x = parseInt(valor, 10);
+
+    if (x < 0) {
+      document.getElementById("resultado").innerHTML = "El factorial no está definido para números negativos";
+      return;
+    }
+
+    var f = factorial(x); 
+    var salida = x + "!=" + f;
+    document.getElementById("resultado").innerHTML = salida;
+  }
+
+  function factorial(x){
+    if (x === 0) return 1;
+    return x * factorial(x - 1);
+  }
+
+  function borrar(){
+    document.getElementById("resultado").innerHTML = "";
+    document.getElementById("numero").value = "";
+  }
+</script>
+</head>
+<body>
+  <h1>Factorial recursivo</h1>
+  <p>Ingresa un número:</p>
+  <form action="">
+    <input type="number" id="numero">
+  </form>
+  <button onclick="filtrado()">Calcular</button>
+  <button onclick="borrar()">Borrar</button>
+  <p id="resultado"></p>
+</body>
+</html>

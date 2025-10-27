@@ -1,0 +1,11 @@
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,Segoe UI,Arial,sans-serif;line-height:1.5;background:#fff;color:#222}
+.container{max-width:720px;margin:24px auto;padding:16px}
+h1,h2{margin:0 0 12px}
+form{display:flex;gap:8px;margin:12px 0}
+input[type=number]{padding:8px;width:140px}
+button{padding:8px 12px;cursor:pointer}
+table{width:100%;border-collapse:collapse;margin-top:12px}
+th,td{border:1px solid #ddd;padding:8px;text-align:center}
+.note{color:#666;font-size:.9rem;margin-top:8px}
+a{color:#0ea5e9;text-decoration:none}

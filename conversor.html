@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversor de Unidades</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="header">
+  <h1>Conversor de Unidades</h1>
+</header>
+
+<nav class="nav">
+  <a href="index.html">Inicio</a>
+  <a href="about.html">About</a>
+</nav>
+
+<main class="container">
+  <section class="card">
+    <div class="grid">
+      <div>
+        <div class="label">Categoría</div>
+        <select id="categoria">
+          <option value="temperatura">Temperatura</option>
+          <option value="distancia">Distancia</option>
+          <option value="tiempo">Tiempo</option>
+          <option value="moneda">Moneda</option>
+        </select>
+      </div>
+      <div>
+        <div class="label">Valor</div>
+        <input type="number" id="valor" placeholder="0" step="any">
+      </div>
+      <div>
+        <div class="label">De</div>
+        <select id="from"></select>
+      </div>
+      <div>
+        <div class="label">A</div>
+        <select id="to"></select>
+      </div>
+      <div>
+        <div class="label">&nbsp;</div>
+        <button id="convertir">Convertir</button>
+      </div>
+      <div>
+        <div class="label">Resultado</div>
+        <input type="text" id="resultado" readonly>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">Portafolio • Conversor</footer>
+
+<script>
+// Listas de unidades por categoría
+const unidades = {
+  temperatura: ["Celsius","Fahrenheit","Kelvin"],
+  distancia: ["Metros","Kilometros","Millas","Pies","Pulgadas"],
+  tiempo: ["Anios","Dias","Horas","Segundos"],
+  moneda: ["MXN","USD","EUR"]
+};
+
+const categoriaSel = document.getElementById('categoria');
+const fromSel = document.getElementById('from');
+const toSel = document.getElementById('to');
+const valorInp = document.getElementById('valor');
+const resOut = document.getElementById('resultado');
+const btn = document.getElementById('convertir');
+
+function llenarUnidades(cat){
+  fromSel.innerHTML = '';
+  toSel.innerHTML = '';
+  unidades[cat].forEach(u => {
+    const o1 = document.createElement('option'); o1.value = u; o1.textContent = u;
+    const o2 = document.createElement('option'); o2.value = u; o2.textContent = u;
+    fromSel.appendChild(o1); toSel.appendChild(o2);
+  });
+  toSel.selectedIndex = Math.min(1, toSel.options.length-1);
+}
+
+categoriaSel.addEventListener('change', () => llenarUnidades(categoriaSel.value));
+llenarUnidades(categoriaSel.value);
+
+// Conversión
+function convertir(){
+  const cat = categoriaSel.value;
+  const v = parseFloat(valorInp.value);
+  const from = fromSel.value;
+  const to = toSel.value;
+  if (isNaN(v)) { resOut.value = ""; return; }
+  let r = v;
+
+  if (cat === 'temperatura'){
+    // Normaliza a Celsius
+    let c;
+    if (from === 'Celsius') c = v;
+    else if (from === 'Fahrenheit') c = (v - 32) * 5/9;
+    else if (from === 'Kelvin') c = v - 273.15;
+    // De Celsius a destino
+    if (to === 'Celsius') r = c;
+    else if (to === 'Fahrenheit') r = c * 9/5 + 32;
+    else if (to === 'Kelvin') r = c + 273.15;
+  }
+
+  if (cat === 'distancia'){
+    // Normaliza a metros
+    const toMeters = {
+      'Metros': 1,
+      'Kilometros': 1000,
+      'Millas': 1609.344,
+      'Pies': 0.3048,
+      'Pulgadas': 0.0254
+    };
+    const m = v * toMeters[from];
+    const fromMeters = {
+      'Metros': 1,
+      'Kilometros': 1/1000,
+      'Millas': 1/1609.344,
+      'Pies': 1/0.3048,
+      'Pulgadas': 1/0.0254
+    };
+    r = m * fromMeters[to];
+  }
+
+  if (cat === 'tiempo'){
+    // Normaliza a segundos
+    const toSeconds = {
+      'Segundos': 1,
+      'Horas': 3600,
+      'Dias': 86400,
+      'Anios': 31557600 // año promedio con bisiestos (365.25 días)
+    };
+    const s = v * toSeconds[from];
+    const fromSeconds = {
+      'Segundos': 1,
+      'Horas': 1/3600,
+      'Dias': 1/86400,
+      'Anios': 1/31557600
+    };
+    r = s * fromSeconds[to];
+  }
+
+  if (cat === 'moneda'){
+    // Tasas estáticas simples (ejemplo). Puedes actualizar manualmente.
+    // 1 MXN = 0.055 USD, 1 MXN = 0.051 EUR (ejemplos)
+    const rates = {
+      'MXN': {'MXN':1, 'USD':0.055, 'EUR':0.051},
+      'USD': {'MXN':18.2, 'USD':1, 'EUR':0.93},
+      'EUR': {'MXN':19.5, 'USD':1.08, 'EUR':1}
+    };
+    r = v * (rates[from][to] ?? 1);
+  }
+
+  resOut.value = (Math.round(r * 1e6)/1e6).toString();
+}
+
+btn.addEventListener('click', convertir);
+</script>
+</body>
+</html>

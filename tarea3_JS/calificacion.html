@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Evaluación de Calificación</title>
+  <script>
+    function filtrado(){
+      const el = document.getElementById("numero");
+      if (!el.checkValidity()){ el.reportValidity(); return; }
+      const x = el.valueAsNumber;
+      document.getElementById("resultado").textContent = evaluar(x);
+    }
+
+    function evaluar(x){
+      if (x === 10) return "LAP";
+      if (x >= 9) return "MB";
+      if (x >= 7.5) return "B";
+      if (x >= 6) return "S";
+      return "NA";
+    }
+
+    function borrar(){
+      document.getElementById("resultado").textContent = "";
+      document.getElementById("numero").value = "";
+    }
+  </script>
+</head>
+<body>
+  <h1>Equivalencia de calificación</h1>
+  <p>Ingresa una calificación (0 a 10):</p>
+  <form action="">
+    <input type="number" id="numero" min="0" max="10" step="0.1" required>
+  </form>
+  <button type="button" onclick="filtrado()">Evaluar</button>
+  <button type="button" onclick="borrar()">Borrar</button>
+  <p id="resultado"></p>
+</body>
+</html>
